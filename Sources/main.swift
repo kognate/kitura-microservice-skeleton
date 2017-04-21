@@ -4,9 +4,9 @@ import SwiftyJSON
 // Create a new router
 let router = Router()
 
-router.all("/", middleware: BodyParser())
+router.all("/run", middleware: BodyParser())
 
-router.post("/") { request, response, next in
+router.post("/run") { request, response, next in
   guard let parsedBody = request.body?.asJSON else {
         next()
         return
@@ -18,7 +18,7 @@ router.post("/") { request, response, next in
     next()
 }
 
-router.get("/info") {
+router.post("/info") {
     _, response, next in
     response.status(.OK).send(json: JSON([]))
 }
